@@ -82,8 +82,8 @@ class ProductsController extends Controller
         
         ]);
 
-        $img = $request->file('img_path')->getClientOriginalName();
-        $img_path = Str::random(40) . '.' . $img;
+        // $img = $request->file('img_path')->getClientOriginalName();
+        // $img_path = Str::random(40) . '.' . $img;
 
 
         DB::transaction(function () use($request, $img_path) {
@@ -95,9 +95,17 @@ class ProductsController extends Controller
             $product -> stock = $request -> stock;
             $product -> comment = $request -> comment;
                 
-        if(request('img_path')){
-            $filePath = $request -> file('img_path') ->storeAs('public/images', $img_path);
-            $product -> img_path = $img_path;
+        if($request ->file('img_path')){
+            $img = $request->file('img_path')->getClientOriginalName();
+            $path = Str::random(40) . '.' . $img;
+            $filePath = $request -> file('img_path') ->storeAs('public/images', $path);
+            
+            $product -> img_path = $path;
+            // $filePath = $request -> file('img_path') ->storeAs('public/images', $img_path);
+            // $img = $request->file('img_path')->getClientOriginalName();
+            // $img_path = Str::random(40) . '.' . $img;
+
+            // $product -> img_path = $img_path;
         }else{
             $product->img_path = null;
         }
