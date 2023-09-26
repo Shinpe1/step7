@@ -86,7 +86,7 @@ class ProductsController extends Controller
         // $img_path = Str::random(40) . '.' . $img;
 
 
-        DB::transaction(function () use($request, $img_path) {
+        DB::transaction(function () use($request) {
             
             $product = new Product();
             $product -> product_name = $request -> product_name;
