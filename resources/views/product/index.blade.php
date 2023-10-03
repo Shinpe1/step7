@@ -64,6 +64,14 @@
 
 <table class="table table-striped">
 <thead>
+    <!-- <tr>
+        <th class="sortable" data-column="products_id" data-sort="asc"><a href="#">ID</a></th>
+        <th class="sortable" data-column="img_path" data-sort="desc"><a href="#">商品画像</a></th>
+        <th class="sortable" data-column="product_name" data-sort="desc"><a href="#">商品名</a></th>
+        <th class="sortable" data-column="price" data-sort="desc"><a href="#">価格</a></th>
+        <th class="sortable" data-column="stock" data-sort="desc"><a href="#">在庫数</a></th>
+        <th class="sortable" data-column="company_name" data-sort="desc"><a href="#">メーカー名</a></th>
+    </tr> -->
     <tr>
     <th>ID
         <a href="{{ request()->fullUrlWithQuery(['sort' => 'products_id', 'direction' => 'asc']) }}">↑</a>
