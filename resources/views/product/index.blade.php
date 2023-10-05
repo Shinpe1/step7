@@ -9,6 +9,7 @@
 
 
     <!-- 検索フォームのセクション -->
+
 <div class="search mt-5">
     
     <!-- 検索のタイトル -->
@@ -117,6 +118,7 @@
     @endforeach
 </tbody>
 </table>
+
 
 
 
