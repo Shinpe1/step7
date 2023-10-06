@@ -38,12 +38,8 @@ Route::get('/edit/{id}', 'ProductsController@edit')->name('products.edit');
 
 Route::post('/update/{id}', 'ProductsController@update')->name('products.update');
 
-Route::post('/destroy{id}', 'ProductsController@destroy')->name('products.destroy');
+Route::post('/delete{id}', 'ProductsController@destroy')->name('products.destroy');
 
 Route::post('/upload', 'ProductsController@upload')->name('products.upload');
 
 Route::post('product/store', 'ProductsController@store')->name('back_product_store');
-
-Route::get('/get-list-ajax', [App\Http\Controllers\ProductController::class,'getListAjax'])->name('getListAjax');
-
-Route::get('/list/sort/{column}',[App\Http\Controllers\ProductController::class,'sort'])->name('sort');

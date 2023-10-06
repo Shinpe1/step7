@@ -1,21 +1,22 @@
 console.log('通ってる！');
 
 
-$(function() {
-    $('#deleteTarget').on('click', function() {
-    var deleteConfirm = confirm('削除してよろしいでしょうか？');
 
+$(function() {
+    $('.btn-danger').on('click', function() {
+    var deleteConfirm = confirm('削除してよろしいでしょうか？(js)');
     if(deleteConfirm == true) {
+
         var clickEle = $(this)
         // 削除ボタンにユーザーIDをカスタムデータとして埋め込んでます。
-        var productID = clickEle.attr('products_id');
+        var productID = clickEle.attr('data-product_id');
 
         $.ajax({
-        url: '/destroy/' +productID,
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
+        url: 'delete' + productID,
         type: 'POST',
-        dataType: 'json',
         data: {'id': productID ,
-                 '_method': 'DELETE'} // DELETE リクエストだよ！と教えてあげる。
+        '_method': 'DELETE'} // DELETE リクエストだよ！と教えてあげる。
         })
 
     .done(function() {
@@ -30,8 +31,9 @@ $(function() {
 
     } else {
         (function(e) {
+        alert('キャンセル！');
         e.preventDefault()
-        alert('完了！');
+        
         });
     };
     });

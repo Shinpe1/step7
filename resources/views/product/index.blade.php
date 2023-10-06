@@ -111,7 +111,7 @@
     <td>
         <form  action="{{ route('products.destroy', ['id'=>$product->products_id]) }}" method="POST" >
         @csrf
-        <button type="submit" class="btn btn-danger" onclick= "return confirm('本当に削除しますか？');" >削除</button>
+        <button type="submit" class="btn btn-danger"  data-product_id="{{ $product->products_id }}" onclick= "return confirm('本当に削除しますか？');" >削除</button>
         </form>
     </td>
     </tr>

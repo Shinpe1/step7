@@ -63,10 +63,10 @@ class ProductsController extends Controller
     }
 
      // ソートのパラメータが指定されている場合、そのカラムでソートを行う
-     if($sort = $request->sort){
-        $direction = $request->direction == 'desc' ? 'desc' : 'asc'; // directionがdescでない場合は、デフォルトでascとする
-        $query->orderBy($sort, $direction);
-    }
+    //  if($sort = $request->sort){
+    //     $direction = $request->direction == 'desc' ? 'desc' : 'asc'; // directionがdescでない場合は、デフォルトでascとする
+    //     $query->orderBy($sort, $direction);
+    // }
     $companies = $this->company->get();
     $products = $query->paginate(10);
 

@@ -13,9 +13,6 @@
     <script src="{{ asset('js/app.js') }}" defer></script>
     <script src="js/product.js" defer></script>
     <!-- @vite(['resources/sass/app.scss', 'resources/js/app.js','resources/js/products.js']) -->
-    <script>
-      var productListUrl = "{{ route('products') }}";
-    </script>
     <script src="https://code.jquery.com/jquery-3.7.1.js" integrity="sha256-eKhayi8LEQwp4NKxN+CfCh+3qOVUtJn3QNZ0TciWLP4=" crossorigin="anonymous"></script>
 
 
