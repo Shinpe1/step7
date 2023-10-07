@@ -68,7 +68,7 @@ class ProductsController extends Controller
     //     $query->orderBy($sort, $direction);
     // }
     $companies = $this->company->get();
-    $products = $query->paginate(10);
+    $products = $query->paginate(10)->appends($request->all());
 
     
         return view('product.index', compact('products'), ['companies' => $companies]);

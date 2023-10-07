@@ -5,15 +5,16 @@ console.log('通ってる！');
 $(function() {
     $('.btn-danger').on('click', function() {
     var deleteConfirm = confirm('削除してよろしいでしょうか？(js)');
+
     if(deleteConfirm == true) {
 
         var clickEle = $(this)
         // 削除ボタンにユーザーIDをカスタムデータとして埋め込んでます。
-        var productID = clickEle.attr('data-product_id');
+        var productID = clickEle.attr('data-product-id');
 
         $.ajax({
-        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },
-        url: 'delete' + productID,
+        headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },   
+        url: 'destroy'+ productID,
         type: 'POST',
         data: {'id': productID ,
         '_method': 'DELETE'} // DELETE リクエストだよ！と教えてあげる。

@@ -12,6 +12,8 @@
 
 <div class="search mt-5">
     
+{{ $products->appends(request()->query())->links() }}
+
     <!-- 検索のタイトル -->
     <h4>検索</h4>
     
@@ -109,18 +111,16 @@
     <td>{{ $product->company->company_name}}</td>
     <td><a href="{{ route('products.show',['id'=>$product->products_id]) }}" class="btn btn-primary">詳細表示</a></td>
     <td>
-        <form  action="{{ route('products.destroy', ['id'=>$product->products_id]) }}" method="POST" >
+        <form   action="{{ route('products.destroy', ['id'=>$product->products_id]) }}" method="POST" >
         @csrf
-        <button type="submit" class="btn btn-danger"  data-product_id="{{ $product->products_id }}" onclick= "return confirm('本当に削除しますか？');" >削除</button>
+        <button type="submit" class="btn btn-danger"  data-product-id = "{{ $product->products_id }}" onclick= "return confirm('本当に削除しますか？');" >削除</button>
         </form>
     </td>
     </tr>
     @endforeach
 </tbody>
+
 </table>
 
-
-
-
-
 @endsection
+

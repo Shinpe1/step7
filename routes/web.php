@@ -38,7 +38,7 @@ Route::get('/edit/{id}', 'ProductsController@edit')->name('products.edit');
 
 Route::post('/update/{id}', 'ProductsController@update')->name('products.update');
 
-Route::post('/delete{id}', 'ProductsController@destroy')->name('products.destroy');
+Route::post('/destroy{id}', 'ProductsController@destroy')->name('products.destroy');
 
 Route::post('/upload', 'ProductsController@upload')->name('products.upload');
 
