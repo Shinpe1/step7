@@ -1,10 +1,13 @@
 console.log('通ってる！');
 
 
+// 削除
 
 $(function() {
     $('.btn-danger').on('click', function(event) {
+
         event.preventDefault();
+
     var deleteConfirm = confirm('削除してよろしいでしょうか？(js)');
 
     if(deleteConfirm == true) {
