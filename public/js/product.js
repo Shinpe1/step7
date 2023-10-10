@@ -31,7 +31,7 @@ $(function() {
         })
 
     .fail(function() {
-        alert('失敗！');
+        console.log('失敗！');
         });
 
     } else {
