@@ -18,7 +18,7 @@ $(function() {
 
         $.ajax({
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },   
-        url: 'delete'+ productID,
+        url: '/delete'+ productID,
         type: 'POST',
         data: {'id': productID ,
         '_method': 'DELETE'} // DELETE リクエストだよ！と教えてあげる。
