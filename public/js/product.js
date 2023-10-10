@@ -3,7 +3,8 @@ console.log('通ってる！');
 
 
 $(function() {
-    $('.btn-danger').on('click', function() {
+    $('.btn-danger').on('click', function(event) {
+        event.preventDefault();
     var deleteConfirm = confirm('削除してよろしいでしょうか？(js)');
 
     if(deleteConfirm == true) {
@@ -14,7 +15,7 @@ $(function() {
 
         $.ajax({
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },   
-        url: 'destroy'+ productID,
+        url: 'delete'+ productID,
         type: 'POST',
         data: {'id': productID ,
         '_method': 'DELETE'} // DELETE リクエストだよ！と教えてあげる。
