@@ -36,9 +36,8 @@ $(function() {
 
     } else {
         (function(e) {
-        alert('キャンセル！');
         e.preventDefault()
-        
+        alert('キャンセル！');
         });
     };
     });
