@@ -18,7 +18,7 @@
     <h4>検索</h4>
     
     <!-- 検索フォーム。GETメソッドで、商品一覧のルートにデータを送信 -->
-    <form action="{{ route('products') }}" method="GET" class="row g-3">
+    <form action="{{ route('products') }}" method="GET" class="row g-3" id ="search-form">
 
         <div class="col-sm-12 col-md-3">
             <input type="text" name="product_name" id= "product_name" class="form-control" placeholder="商品名" value="{{ request('product_name') }}">
