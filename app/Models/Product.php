@@ -5,9 +5,22 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Company;
+use Kyslik\ColumnSortable\Sortable;
 
 class Product extends Model
 {
+    use Sortable;
+
+    //追記(ソートに使うカラムを指定
+    public $sortable = [
+
+        'products_id', 
+        'product_name', 
+        'company_id', 
+        'price',
+        'stock'
+
+    ]; 
 
     // モデルに関連付けるテーブル
     protected $table = 'products';
@@ -26,6 +39,7 @@ class Product extends Model
         'comment',
         'img_path',
     ];
+
 
     public function company()
     {

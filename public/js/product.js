@@ -1,5 +1,3 @@
-console.log('通ってる！');
-
 
 // 削除
 
@@ -43,35 +41,40 @@ $(function() {
     });
 });
 
+
 //検索
 
 $(function() {
     $('#search-form').on('submit', function(event) { 
-        console.log('通じたよ');
-
+        
         event.preventDefault();
         
         $.ajax({
         headers: { 'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content') },   
-        url: '/products',
+        url: 'products',
         type: 'GET',
-        dataType: 'json',
+        dataType: 'html',
         data: {
-            name : $('#product_name').val(),
-            company : $('#company_id').val(),
+            product_name : $("#product_name").val(),
+            company_id : $("#company_id").val(),
         }
         
         })
 
-    .done(function(response) {
+    .done(function(response,data) {
 
         console.log('検索成功！');
+        
 
-        var $result = $('');
+        var $result = $('#search.result');
+            $result.empty();
 
-        $result.empty();
+            $("#ajax").html(response,data);
+            
+            console.log('ここまで繋がった！！');
 
-        $.each(response.products,function(product){
+        $.each(response.data,function(){
+            console.log('検索成功2');
             var html =`
             <tr>
                 <td>${product.products_id }</td>
@@ -79,11 +82,11 @@ $(function() {
                 <td>${product.product_name }</td>
                 <td>${product.price }</td>
                 <td>${product.stock }</td>
-                <td>${product.company_id }</td>
+                <td>${product.company_name }</td>
             </tr>
             `;
-            $result.append(html);
 
+            $result.append(html);
         });
     })
 

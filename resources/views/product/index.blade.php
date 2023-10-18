@@ -12,10 +12,12 @@
 
 <div class="search mt-5">
     
-{{ $products->appends(request()->query())->links() }}
+<!-- {{ $products->appends(request()->query())->links() }} -->
 
     <!-- 検索のタイトル -->
     <h4>検索</h4>
+
+    <div id="ajax"></div>
     
     <!-- 検索フォーム。GETメソッドで、商品一覧のルートにデータを送信 -->
     <form action="{{ route('products') }}" method="GET" class="row g-3" id ="search-form">
@@ -25,14 +27,21 @@
         </div>
 
         <div class="col-sm-12 col-md-2">
+
             <select type="text" name="company_id" id= "company_id" class="form-control"  value="{{ request('company_id') }}">
             <option value="">全て</option>
             <option disabled style='display:none;' @if (empty($product->company_id)) selected @endif>選択してください</option>
+
     @foreach($companies as $company)
+    
             <option value="{{ $company->company_id }}"> {{ $company->company_name }}</option>
+
         @endforeach
+
         </select>
+
         </div>
+
         <!-- 最小価格の入力欄 -->
         <div class="col-sm-12 col-md-2">
             <input type="number" name="min_price" class="form-control" placeholder="最小価格" value="{{ request('min_price') }}">
@@ -67,39 +76,19 @@
 
 <table class="table table-striped">
 <thead>
-    <!-- <tr>
-        <th class="sortable" data-column="products_id" data-sort="asc"><a href="#">ID</a></th>
-        <th class="sortable" data-column="img_path" data-sort="desc"><a href="#">商品画像</a></th>
-        <th class="sortable" data-column="product_name" data-sort="desc"><a href="#">商品名</a></th>
-        <th class="sortable" data-column="price" data-sort="desc"><a href="#">価格</a></th>
-        <th class="sortable" data-column="stock" data-sort="desc"><a href="#">在庫数</a></th>
-        <th class="sortable" data-column="company_name" data-sort="desc"><a href="#">メーカー名</a></th>
-    </tr> -->
     <tr>
-    <th>ID
-        <a href="{{ request()->fullUrlWithQuery(['sort' => 'products_id', 'direction' => 'asc']) }}">↑</a>
-        <a href="{{ request()->fullUrlWithQuery(['sort' => 'products_id', 'direction' => 'desc']) }}">↓</a>
-    </th>
-    <th>商品画像</th>
-    <th>商品名
-        <a href="{{ request()->fullUrlWithQuery(['sort' => 'product_name', 'direction' => 'asc']) }}">↑</a>
-        <a href="{{ request()->fullUrlWithQuery(['sort' => 'product_name', 'direction' => 'desc']) }}">↓</a>
-    </th>
-    <th>価格
-        <a href="{{ request()->fullUrlWithQuery(['sort' => 'price', 'direction' => 'asc']) }}">↑</a>
-        <a href="{{ request()->fullUrlWithQuery(['sort' => 'price', 'direction' => 'desc']) }}">↓</a>
-    </th>
-    <th>在庫数
-        <a href="{{ request()->fullUrlWithQuery(['sort' => 'stock', 'direction' => 'asc']) }}">↑</a>
-        <a href="{{ request()->fullUrlWithQuery(['sort' => 'stock', 'direction' => 'desc']) }}">↓</a>
-    </th>
-    </th>
-    <th>メーカー名 
-        <a href="{{ request()->fullUrlWithQuery(['sort' => 'company_id', 'direction' => 'asc']) }}">↑</a>
-        <a href="{{ request()->fullUrlWithQuery(['sort' => 'company_id', 'direction' => 'desc']) }}">↓</a>
-    </th>
+    <tr>
+        
+            <th scope="col">@sortablelink('products_id', 'ID')</th>
+            <th scope="col">@sortablelink('img_path', '商品画像')</th>
+            <th scope="col">@sortablelink('product_name', '商品名')</th>
+            <th scope="col">@sortablelink('price', '価格')</th>
+            <th scope="col">@sortablelink('stock', '在庫数')</th>
+            <th scope="col">@sortablelink('company_id', 'メーカー名')</th>
+        </tr>
     </tr>
 </thead>
+
 <tbody>
     @foreach ($products as $product)
     <tr>

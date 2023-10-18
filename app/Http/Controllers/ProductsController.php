@@ -10,6 +10,7 @@ use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Exception;
 
+
 class ProductsController extends Controller
 {
     public function __construct()
@@ -62,17 +63,14 @@ class ProductsController extends Controller
         $query->where('stock', '<=', $max_stock);
     }
 
-     // ソートのパラメータが指定されている場合、そのカラムでソートを行う
-    //  if($sort = $request->sort){
-    //     $direction = $request->direction == 'desc' ? 'desc' : 'asc'; // directionがdescでない場合は、デフォルトでascとする
-    //     $query->orderBy($sort, $direction);
-    // }
     $companies = $this->company->get();
+    $posts = Product::sortable()->get();
     $products = $query->paginate(10)->appends($request->all());
 
     
-        return view('product.index', compact('products'), ['companies' => $companies]);
-    }
+    return view('product.index', compact('products'), ['companies' => $companies])->with('posts', $posts);;
+
+}
 
     /**
      * 登録画面
@@ -86,8 +84,6 @@ class ProductsController extends Controller
         return view('product.create', compact('companies'));
     } 
     
-
-
     /**
      * 登録処理
      */
@@ -107,10 +103,6 @@ class ProductsController extends Controller
         
         ]);
 
-        // $img = $request->file('img_path')->getClientOriginalName();
-        // $img_path = Str::random(40) . '.' . $img;
-
-
         DB::transaction(function () use($request) {
             
             $product = new Product();
@@ -126,20 +118,12 @@ class ProductsController extends Controller
             $filePath = $request -> file('img_path') ->storeAs('public/images', $path);
             
             $product -> img_path = $path;
-            // $filePath = $request -> file('img_path') ->storeAs('public/images', $img_path);
-            // $img = $request->file('img_path')->getClientOriginalName();
-            // $img_path = Str::random(40) . '.' . $img;
-
-            // $product -> img_path = $img_path;
         }else{
             $product->img_path = null;
         }
 
         $product -> save();
     });
-
-       // $registerProducts = $this->product->InsertProduct($request,$filename);
-
         return redirect()->route('products');
     }
 
@@ -211,16 +195,6 @@ class ProductsController extends Controller
     });
 
         return redirect()->route('products');
-            //     $filename = $request->img_path->getClientOriginalName();
-            //     $filePath = $request->img_path->storeAs('public/images', $filename);  
-            // }
-            // if(request('img_path')){
-            // }else{
-            //     $img_path = '';
-            
-            
-        // $updateProduct = $this->product->updateProduct($request, $product);
-    
     }
 
     /**
@@ -232,10 +206,6 @@ class ProductsController extends Controller
             $product = Product::find($id);
 
             $product->delete();
-        // 指定されたIDのレコードを削除
-        // $deleteProduct = $this->product->deleteProductById($id);
-        // 
-        
     });
         return redirect()->route('products');
     }
