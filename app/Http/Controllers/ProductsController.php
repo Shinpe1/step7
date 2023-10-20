@@ -67,7 +67,16 @@ class ProductsController extends Controller
     $posts = Product::sortable()->get();
     $products = $query->paginate(10)->appends($request->all());
 
-    
+    if($sort = $request->sort){
+        $direction = $request->direction == 'desc' ? 'desc' : 'asc'; 
+// もし $request->direction の値が 'desc' であれば、'desc' を返す。
+// そうでなければ'asc' を返す
+        $query->orderBy($sort, $direction);
+// orderBy('カラム名', '並び順')
+
+    }
+    $products = $query->paginate(10);
+
     return view('product.index', compact('products'), ['companies' => $companies])->with('posts', $posts);;
 
 }

@@ -61,19 +61,18 @@ $(function() {
         
         })
 
-    .done(function(response,data) {
+    .done(function(data) {
 
         console.log('検索成功！');
         
-
         var $result = $('#search.result');
             $result.empty();
 
-            $("#ajax").html(response,data);
+            $("#ajax").html(data);
             
             console.log('ここまで繋がった！！');
 
-        $.each(response.data,function(){
+        $.each(response.products,function(product){
             console.log('検索成功2');
             var html =`
             <tr>

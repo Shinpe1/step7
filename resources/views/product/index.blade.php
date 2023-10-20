@@ -12,7 +12,7 @@
 
 <div class="search mt-5">
     
-<!-- {{ $products->appends(request()->query())->links() }} -->
+{{ $products->appends(request()->query())->links() }}
 
     <!-- 検索のタイトル -->
     <h4>検索</h4>
@@ -29,7 +29,7 @@
         <div class="col-sm-12 col-md-2">
 
             <select type="text" name="company_id" id= "company_id" class="form-control"  value="{{ request('company_id') }}">
-            <option value="">全て</option>
+            <option value="">選択してください</option>
             <option disabled style='display:none;' @if (empty($product->company_id)) selected @endif>選択してください</option>
 
     @foreach($companies as $company)
@@ -76,17 +76,30 @@
 
 <table class="table table-striped">
 <thead>
-    <tr>
-    <tr>
-        
-            <th scope="col">@sortablelink('products_id', 'ID')</th>
-            <th scope="col">@sortablelink('img_path', '商品画像')</th>
-            <th scope="col">@sortablelink('product_name', '商品名')</th>
-            <th scope="col">@sortablelink('price', '価格')</th>
-            <th scope="col">@sortablelink('stock', '在庫数')</th>
-            <th scope="col">@sortablelink('company_id', 'メーカー名')</th>
-        </tr>
-    </tr>
+<tr>
+    <th>ID
+        <a href="{{ request()->fullUrlWithQuery(['sort' => 'products_id', 'direction' => 'asc']) }}">↑</a>
+        <a href="{{ request()->fullUrlWithQuery(['sort' => 'products_id', 'direction' => 'desc']) }}">↓</a>
+    </th>
+    <th>商品画像</th>
+    <th>商品名
+        <a href="{{ request()->fullUrlWithQuery(['sort' => 'product_name', 'direction' => 'asc']) }}">↑</a>
+        <a href="{{ request()->fullUrlWithQuery(['sort' => 'product_name', 'direction' => 'desc']) }}">↓</a>
+    </th>
+    <th>価格
+        <a href="{{ request()->fullUrlWithQuery(['sort' => 'price', 'direction' => 'asc']) }}">↑</a>
+        <a href="{{ request()->fullUrlWithQuery(['sort' => 'price', 'direction' => 'desc']) }}">↓</a>
+    </th>
+    <th>
+        在庫数
+        <a href="{{ request()->fullUrlWithQuery(['sort' => 'stock', 'direction' => 'asc']) }}">↑</a>
+        <a href="{{ request()->fullUrlWithQuery(['sort' => 'stock', 'direction' => 'desc']) }}">↓</a>
+    </th>
+    <th>メーカー名
+        <a href="{{ request()->fullUrlWithQuery(['sort' => 'company_id', 'direction' => 'asc']) }}">↑</a>
+        <a href="{{ request()->fullUrlWithQuery(['sort' => 'company_id', 'direction' => 'desc']) }}">↓</a>
+    </th>
+</tr>
 </thead>
 
 <tbody>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sale extends Model
 {
-    protected $fillable = ['product_id', //ここに配列で追加、編集するフィールドを入力する
+    protected $fillable = ['products_id', //ここに配列で追加、編集するフィールドを入力する
     // 'フィールド2',
     // 'フィールド3',
       ]; //　$fillable属性を追記
