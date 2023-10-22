@@ -65,7 +65,7 @@ class ProductsController extends Controller
 
     $companies = $this->company->get();
     $posts = Product::sortable()->get();
-    $products = $query->paginate(10)->appends($request->all());
+    
 
     if($sort = $request->sort){
         $direction = $request->direction == 'desc' ? 'desc' : 'asc'; 
@@ -76,6 +76,7 @@ class ProductsController extends Controller
 
     }
     
+    $products = $query->paginate(10)->appends($request->all());
     return view('product.index', compact('products'), ['companies' => $companies])->with('posts', $posts);;
 
 }
