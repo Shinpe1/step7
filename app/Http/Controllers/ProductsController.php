@@ -75,8 +75,7 @@ class ProductsController extends Controller
 // orderBy('カラム名', '並び順')
 
     }
-    $products = $query->paginate(10);
-
+    
     return view('product.index', compact('products'), ['companies' => $companies])->with('posts', $posts);;
 
 }
