@@ -42,6 +42,7 @@ $(function() {
 });
 
 
+
 //検索
 
 $(function() {
@@ -62,31 +63,15 @@ $(function() {
         })
 
     .done(function(data) {
-
-        console.log('検索成功！');
         
         var $result = $('#search.result');
             $result.empty();
 
-            $("#ajax").html(data);
+            let newTable =$(data).find("#product_table")
+            $("#product_table").html(newTable);
             
-            console.log('ここまで繋がった！！');
+            console.log('検索成功！');
 
-        $.each(response.products,function(product){
-            console.log('検索成功2');
-            var html =`
-            <tr>
-                <td>${product.products_id }</td>
-                <td>${product.img_path }</td>
-                <td>${product.product_name }</td>
-                <td>${product.price }</td>
-                <td>${product.stock }</td>
-                <td>${product.company_name }</td>
-            </tr>
-            `;
-
-            $result.append(html);
-        });
     })
 
     .fail(function() {

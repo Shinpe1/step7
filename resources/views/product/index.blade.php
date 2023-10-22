@@ -74,7 +74,7 @@
 <a href="{{ route('products') }}" class="btn btn-success mt-3">検索条件を元に戻す</a>
 
 
-<table class="table table-striped">
+<table class="table table-striped" id = product_table>
 <thead>
 <tr>
     <th>ID
