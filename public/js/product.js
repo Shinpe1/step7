@@ -58,6 +58,8 @@ $(function() {
         data: {
             product_name : $("#product_name").val(),
             company_id : $("#company_id").val(),
+            price : $("#price").val(),
+            stock : $("#stock").val(),
         }
         
         })
