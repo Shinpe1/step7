@@ -1,7 +1,7 @@
 
 // 削除
 
-function test () {
+function del () {
     $('.btn-danger').on('click', function(event) {
 
         event.preventDefault();
@@ -46,7 +46,7 @@ function test () {
 //検索
 
 $(function() {
-    test();
+    del();
     $('#search-form').on('submit', function(event) { 
         
         event.preventDefault();
@@ -75,13 +75,13 @@ $(function() {
             let newTable =$(data).find("#product_table")
             $("#product_table").html(newTable);
             
-            test();
+            del();
             console.log('検索成功！');
 
     })
 
     .fail(function() {
-        test();
+        del();
         console.log('検索失敗！');
         });
     });
