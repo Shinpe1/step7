@@ -1,7 +1,7 @@
 
 // 削除
 
-$(function() {
+function test () {
     $('.btn-danger').on('click', function(event) {
 
         event.preventDefault();
@@ -39,13 +39,14 @@ $(function() {
         });
     };
     });
-});
+};
 
 
 
 //検索
 
 $(function() {
+    test();
     $('#search-form').on('submit', function(event) { 
         
         event.preventDefault();
@@ -58,8 +59,10 @@ $(function() {
         data: {
             product_name : $("#product_name").val(),
             company_id : $("#company_id").val(),
-            price : $("#price").val(),
-            stock : $("#stock").val(),
+            min_price : $("#min_price").val(),
+            max_price : $("#max_price").val(),
+            min_stock : $("#min_stock").val(),
+            max_stock : $("#max_stock").val(),
         }
         
         })
@@ -72,11 +75,13 @@ $(function() {
             let newTable =$(data).find("#product_table")
             $("#product_table").html(newTable);
             
+            test();
             console.log('検索成功！');
 
     })
 
     .fail(function() {
+        test();
         console.log('検索失敗！');
         });
     });

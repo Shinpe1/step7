@@ -5,11 +5,14 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Product;
 use App\Models\Sale;
+use Illuminate\Support\Facades\DB;
 
 class SalesController extends Controller
 {
     public function purchase(Request $request)
 {
+    DB::transaction(function () use($request){
+    
     // リクエストから必要なデータを取得する
     $productId = $request->input('product_id'); // "product_id":7が送られた場合は7が代入される
     $quantity = $request->input('quantity', 1); // 購入する数を代入する もしも”quantity”というデータが送られていない場合は1を代入する
@@ -36,10 +39,10 @@ class SalesController extends Controller
         // 主キーであるIDと、created_at , updated_atは自動入力されるため不要
     ]);
 
-    
+
 
     $sale->save();
-
+});
     // レスポンスを返す
     return response()->json(['message' => '購入成功']);
 }

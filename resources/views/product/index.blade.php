@@ -44,22 +44,22 @@
 
         <!-- 最小価格の入力欄 -->
         <div class="col-sm-12 col-md-2">
-            <input type="number" name="min_price" class="form-control" placeholder="最小価格" value="{{ request('min_price') }}">
+            <input type="number" name="min_price" id= "min_price" class="form-control" placeholder="最小価格" value="{{ request('min_price') }}">
         </div>
 
         <!-- 最大価格の入力欄 -->
         <div class="col-sm-12 col-md-2">
-            <input type="number" name="max_price" class="form-control" placeholder="最大価格" value="{{ request('max_price') }}">
+            <input type="number" name="max_price" id= "max_price" class="form-control" placeholder="最大価格" value="{{ request('max_price') }}">
         </div>
 
         <!-- 最小在庫数の入力欄 -->
         <div class="col-sm-12 col-md-2">
-            <input type="number" name="min_stock" class="form-control" placeholder="最小在庫" value="{{ request('min_stock') }}">
+            <input type="number" name="min_stock" id= "min_stock" class="form-control" placeholder="最小在庫" value="{{ request('min_stock') }}">
         </div>
 
         <!-- 最大在庫数の入力欄 -->
         <div class="col-sm-12 col-md-2">
-            <input type="number" name="max_stock" class="form-control" placeholder="最大在庫" value="{{ request('max_stock') }}">
+            <input type="number" name="max_stock"id= "max_stock"  class="form-control" placeholder="最大在庫" value="{{ request('max_stock') }}">
         </div>
 
 
