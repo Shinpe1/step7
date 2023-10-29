@@ -11,7 +11,7 @@ class SalesController extends Controller
 {
     public function purchase(Request $request)
 {
-    DB::transaction(function () use($request){
+return DB::transaction(function () use($request){
     
     // リクエストから必要なデータを取得する
     $productId = $request->input('product_id'); // "product_id":7が送られた場合は7が代入される
@@ -28,22 +28,26 @@ class SalesController extends Controller
         return response()->json(['message' => '商品が在庫不足です'], 400);
     }
 
+    try {
     // 在庫を減少させる
     $product->stock -= $quantity; // $quantityは購入数を指し、デフォルトで1が指定されている
     $product->save();
-
-
     // Salesテーブルに商品IDと購入日時を記録する
     $sale = new Sale([
         'product_id' => $productId,
         // 主キーであるIDと、created_at , updated_atは自動入力されるため不要
     ]);
 
-
-
     $sale->save();
-});
+
+} catch(Exception $e) {
+    DB::rollback();
+    return response()->json(['message' => '購入に失敗しました'], 500);
+}
+
+DB::commit();
     // レスポンスを返す
     return response()->json(['message' => '購入成功']);
+});
 }
 }
